@@ -94,7 +94,8 @@ public class GameManager : MonoBehaviour {
         {
             PlayerPrefs.SetFloat("Deaths", 0);
         }
-        SceneManager.LoadScene("ScorePanel");
+
+       LevelManager.GetInstance().LoadStatsPage();
     }
 
 

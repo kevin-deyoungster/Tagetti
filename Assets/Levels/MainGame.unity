@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080f4f3b00c389344a5a7dd93177b0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 30
+  timeLeft: 5
   timeLabel: {fileID: 1114237357}
   stopCounting: 0
 --- !u!82 &2113825254
