@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212863186212003100}
   - component: {fileID: 61134304902845548}
   m_Layer: 0
-  m_Name: BorderRight
+  m_Name: BorderLeft-Right
   m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
