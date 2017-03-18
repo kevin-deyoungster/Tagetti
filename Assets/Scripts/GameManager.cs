@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
         {
             Paused();
         }
-        else if(Input.GetKeyDown(KeyCode.P) || Input.GetMouseButtonDown(0) && gamePaused == true)
+        else if(Input.GetKeyDown(KeyCode.P) && gamePaused == true)
         {
             UnPaused();
         }
@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour {
         {
             PlayerPrefs.SetFloat("Deaths", 0);
         }
+        SoundController.GetInstance().GameOver();
 
        LevelManager.GetInstance().LoadStatsPage();
     }
@@ -122,5 +123,27 @@ public class GameManager : MonoBehaviour {
         gamePaused = false;
     }
 
+    public GameObject settings;
+
+    public void ShowSettings()
+    {
+        Settings[] a = Resources.FindObjectsOfTypeAll<Settings>();
+        foreach(Settings set in a)
+        {
+            set.gameObject.SetActive(true);
+        }
+    }
+
+    public void ShowScores()
+    {
+        Time.timeScale = 1;
+        LevelManager.GetInstance().LoadStatsPage();
+    }
+
+    public void ShowMenu()
+    {
+        Time.timeScale = 1;
+        LevelManager.GetInstance().LoadMainMenu();
+    }
   
 }

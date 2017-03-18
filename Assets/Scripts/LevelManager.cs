@@ -40,13 +40,4 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene("StatsPage");
     }
 
-    public void LoadSettings()
-    {
-        GameObject instance = Instantiate(Resources.Load("Prefabs/SettingsPanel", typeof(GameObject))) as GameObject;
-    }
-    
-    public void ShowSettings()
-    {
-
-    }
 }

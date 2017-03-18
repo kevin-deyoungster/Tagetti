@@ -8,6 +8,11 @@ public class Settings : MonoBehaviour {
     public bool backgroundMuted = false;
     public bool fxMuted = false;
 
+    public void Awake()
+    {
+        transform.Find("SoundSlider").gameObject.GetComponent<Slider>().value = SoundController.GetInstance().backgroundVolume;
+        transform.Find("FXSlider").gameObject.GetComponent<Slider>().value = SoundController.GetInstance().fxVolume;
+    }
     public void ClickedBackground()
     {
         if (backgroundMuted)

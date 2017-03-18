@@ -9,22 +9,42 @@ public class SoundController : MonoBehaviour {
     public float backgroundVolume;
     public float fxVolume;
 
-	void Awake()
+    public AudioSource gameOverSound;
+    public AudioSource shootSound;
+    public AudioSource backgroundSound;
+
+
+    void Awake()
     {
         if(instance!= null && instance != this)
         {
-            Destroy(this.gameObject);
+            //Destroy(gameObject);
             return;
         }
         else
         {
             instance = this;
         }
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     public static SoundController GetInstance()
     {
         return instance;
+    }
+
+    public void Shoot()
+    {
+        shootSound.Play();
+    }
+
+    public void GameOver()
+    {
+        gameOverSound.Play();
+    }
+
+    public void Background()
+    {
+        backgroundSound.Play();
     }
 }

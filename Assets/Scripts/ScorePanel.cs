@@ -33,7 +33,7 @@ public class ScorePanel : MonoBehaviour {
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Level01");
+       LevelManager.GetInstance().LoadGame();
     }
 
     public void ClearUserData()

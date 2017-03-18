@@ -15,6 +15,7 @@ TagManager:
   - lbItem
   - Status
   - PauseButton
+  - Settings
   layers:
   - Default
   - TransparentFX
