@@ -9,14 +9,15 @@ public class LevelManager : MonoBehaviour
     {
         if(instance != null && instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
         else
         {
             instance = this;
         }
-        DontDestroyOnLoad(this.gameObject);
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public static LevelManager GetInstance()
@@ -37,5 +38,15 @@ public class LevelManager : MonoBehaviour
     public void LoadStatsPage()
     {
         SceneManager.LoadScene("StatsPage");
+    }
+
+    public void LoadSettings()
+    {
+        GameObject instance = Instantiate(Resources.Load("Prefabs/SettingsPanel", typeof(GameObject))) as GameObject;
+    }
+    
+    public void ShowSettings()
+    {
+
     }
 }
