@@ -1,22 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
-    void Start()
-    {
-       
-    }
-
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Menu");
     }
 
     public void LoadGame()
     {
-        SceneManager.LoadScene("Level01");
+        SceneManager.LoadScene("MainGame");
+    }
+
+    public void LoadStatsPage()
+    {
+        SceneManager.LoadScene("StatsPage");
     }
 }
