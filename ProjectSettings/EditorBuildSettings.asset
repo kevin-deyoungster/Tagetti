@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/Levels/MainGame.unity
   - enabled: 1
     path: Assets/Levels/StatsPage.unity
+  - enabled: 1
+    path: Assets/Levels/Ask.unity

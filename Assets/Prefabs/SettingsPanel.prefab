@@ -1314,7 +1314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMuted: 0
-  fxMuted: 0
+  on: {fileID: 0}
+  off: {fileID: 0}
 --- !u!114 &114798316968062480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1326,10 +1327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a985c6a5594b904eafc15af00ad8919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundVolume: 0
-  fxVolume: 0
-  gameOverSound: {fileID: 0}
-  shootSound: {fileID: 0}
+  volume: 0
   backgroundSound: {fileID: 0}
 --- !u!114 &114847924305800098
 MonoBehaviour:

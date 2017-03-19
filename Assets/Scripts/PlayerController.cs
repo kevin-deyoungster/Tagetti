@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
 
     void Shoot()
     {
-        SoundController.GetInstance().Shoot();
+        GetComponent<AudioSource>().Play();
         Transform shootPoint = transform.GetChild(0).transform;
         Instantiate(bulletPrefab, shootPoint.position, shootPoint.transform.rotation);
     }

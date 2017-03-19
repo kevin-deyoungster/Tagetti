@@ -16,6 +16,7 @@ TagManager:
   - Status
   - PauseButton
   - Settings
+  - SoundButton
   layers:
   - Default
   - TransparentFX

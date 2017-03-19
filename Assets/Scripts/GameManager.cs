@@ -94,9 +94,10 @@ public class GameManager : MonoBehaviour {
         {
             PlayerPrefs.SetFloat("Deaths", 0);
         }
-        SoundController.GetInstance().GameOver();
+        //SoundController.GetInstance().GameOver();
 
-       LevelManager.GetInstance().LoadStatsPage();
+        LevelManager.GetInstance().LoadStatsPage();
+        
     }
 
 
@@ -144,6 +145,11 @@ public class GameManager : MonoBehaviour {
     {
         Time.timeScale = 1;
         LevelManager.GetInstance().LoadMainMenu();
+    }
+
+    public void Clicked()
+    {
+        FindObjectOfType<Settings>().ClickedBackground();
     }
   
 }
