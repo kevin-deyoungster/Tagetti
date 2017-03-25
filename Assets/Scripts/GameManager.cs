@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour {
         }
         //SoundController.GetInstance().GameOver();
 
+        
         LevelManager.GetInstance().LoadStatsPage();
         
     }

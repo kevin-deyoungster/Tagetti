@@ -10,8 +10,10 @@ public class ScorePanel : MonoBehaviour {
     public GameObject lblhighScore;
     public GameObject lbldeaths;
     public GameObject lblUsername;
+    public GameObject lblGlobalScore;
 
-	// Use this for initialization
+    public ServerConnector serveConnect;
+
 	void Start () {
 
         if (string.IsNullOrEmpty(PlayerPrefs.GetString("Username")))
@@ -24,7 +26,12 @@ public class ScorePanel : MonoBehaviour {
             setLabelText(lblhighScore, PlayerPrefs.GetFloat("High Score").ToString());
             setLabelText(lbldeaths, PlayerPrefs.GetFloat("Deaths").ToString());
             setLabelText(lblUsername, PlayerPrefs.GetString("Username"));
+            setLabelText(lblGlobalScore, PlayerPrefs.GetString("Global Score").ToString());
         }
+
+        FindObjectOfType<ServerConnector>().updateUser();
+        serveConnect.GetTopScore();
+        
     }
 
     void setLabelText(GameObject label, string text)
@@ -46,13 +53,14 @@ public class ScorePanel : MonoBehaviour {
        LevelManager.GetInstance().LoadGame();
     }
 
+
     public void ClearUserData()
     {
         PlayerPrefs.DeleteAll();
 
     }
 
-
+  
    
 }
 
