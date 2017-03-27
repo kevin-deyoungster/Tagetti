@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -55,12 +56,12 @@ public class GameManager : MonoBehaviour {
     {
         for(int i = 0; i < numberOfBalls; i++)
         {
-            Vector3 ballPosition = new Vector3(Random.Range(-8.0f,5.4f), Random.Range(2.88f,-3));
+            Vector3 ballPosition = new Vector3(UnityEngine.Random.Range(-8.0f,5.4f), UnityEngine.Random.Range(2.88f,-3));
 
-            //To Prevent the ball overlapping over the player. i.e. If ball is too close to player redo the random 
+            //To Prevent the ball overlapping over the player. i.e. If ball is too close to player redo the UnityEngine.Random 
             if (Vector3.Distance(ballPosition, FindObjectOfType<PlayerController>().transform.position) < 0.9)
             {
-                ballPosition = new Vector3(Random.Range(-8.0f, 5.4f), Random.Range(2.88f, -3));
+                ballPosition = new Vector3(UnityEngine.Random.Range(-8.0f, 5.4f), UnityEngine.Random.Range(2.88f, -3));
             }
 
             GameObject ball = Instantiate(ballPrefab, ballPosition, Quaternion.identity);
@@ -152,5 +153,7 @@ public class GameManager : MonoBehaviour {
     {
         FindObjectOfType<Settings>().ClickedBackground();
     }
-  
+
+   
+
 }

@@ -8,9 +8,7 @@ using UnityEngine.UI;
 public class NetworkManager : MonoBehaviour {
 
     public GameObject leaderboard;
-    public GameObject leaderlist;
     public GameObject leaderClose;
-    public RectTransform myPanel;
 
     public Text globalScore;
 
@@ -98,92 +96,124 @@ public class NetworkManager : MonoBehaviour {
     }
  
 
-    public void GetLeaderBoard(int limit)
+    //public void GetLeaderBoard(int limit)
+    //{
+    //    UpdateUser();
+    //    WWW www = new WWW("https://tagetti.herokuapp.com/leaderboard", null, header);
+    //    StartCoroutine(GetLeaderBoardConnection(www,limit));
+    //}
+    //IEnumerator GetLeaderBoardConnection(WWW www,int limit)
+    //{
+    //    yield return www;
+    //    //leaderboard.SetActive(true);
+    //    //leaderClose.SetActive(true);
+
+    //    if (www.error == null)
+    //    {
+    //        Alert("", "LeaderBoardStatus");
+    //        string[] Players = new string[limit];
+
+    //        GameObject newTextBox = (GameObject)Resources.Load("TextPrefab");
+
+    //        string[] people = www.text.Split('|');
+
+    //        for (int i = 0; i < people.Length - 1; i++)
+    //        {
+    //            string[] userData = people[i].Split('*');
+    //            if (userData[0].Replace("\"", string.Empty) == PlayerPrefs.GetString("Username"))
+    //            {
+    //                print("Position = " + (i + 1).ToString());
+    //            }
+
+    //            Players[i] = userData[0].Replace("\"",string.Empty).PadRight(10,' ') + " : " + userData[1];
+    //        }
+
+
+    //        for (int i = 0; i < Players.Length - 1; i++)
+    //        {
+    //            if (!string.IsNullOrEmpty(Players[i]))
+    //            {
+    //                GameObject theText = GameObject.Find("LeaderBoardStatus").transform.Find("Player" + (i+1).ToString()).gameObject;
+    //                theText.GetComponent<TextController>().Setup((i + 1), Players[i].Split(':')[0], (Players[i].Split(':')[1]));
+   
+    //                try
+    //                {
+    //                    if (Players[i].Contains(PlayerPrefs.GetString("Username")))
+    //                    {
+    //                        theText.GetComponent<TextController>().Colorize();
+    //                    }
+    //                }
+    //                catch (Exception e) { }
+    //            }
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Alert("Error in Connection", "LeaderBoardStatus");
+    //    }
+    //}
+            
+    //public void GetGlobalHighScore()
+    //{
+    //    WWW www = new WWW("https://tagetti.herokuapp.com/leaderboard/1", null, header);
+    //    StartCoroutine(GetGlobalHighScoreConnection(www));
+    //}
+    //IEnumerator GetGlobalHighScoreConnection(WWW www)
+    //{
+    //    yield return www;
+
+    //    if (www.error == null)
+    //    {
+    //        string playerScore = www.text.Split('*')[1].Replace("|", "").Replace("\"", "");
+    //        GameObject.Find("Global_Score").GetComponent<Text>().text = playerScore;
+    //        PlayerPrefs.SetInt("Global Score", int.Parse(playerScore));
+    //    }
+    //    else
+    //    {
+    //        GameObject.Find("Global_Score").GetComponent<Text>().text = "X";
+    //        Alert("Error in Connection. Couldn't update Global Score", "Status");
+    //    }
+    //}
+
+    public void UpdateScores()
     {
-        UpdateUser();
-        WWW www = new WWW("https://tagetti.herokuapp.com/leaderboard/" + limit, null, header);
-        StartCoroutine(GetLeaderBoardConnection(www,limit));
+        WWW www = new WWW("https://tagetti.herokuapp.com/leaderboard", null, header);
+        StartCoroutine(UpdateScoreConnection(www));
     }
-    IEnumerator GetLeaderBoardConnection(WWW www,int limit)
+    IEnumerator UpdateScoreConnection(WWW www)
     {
         yield return www;
-
+        
         if (www.error == null)
         {
-            leaderboard.SetActive(true);
-            leaderClose.SetActive(true);
-
-            string[] Players = new string[limit];
-
-            GameObject newTextBox = (GameObject)Resources.Load("TextPrefab");
+            List<string> usernames = new List<string>();
+            List<string> scores = new List<string>();
 
             string[] people = www.text.Split('|');
 
             for (int i = 0; i < people.Length - 1; i++)
             {
-                string[] userData = people[i].Split('*');
-
-                Players[i] = userData[0].Replace("\"",string.Empty).PadRight(10,' ') + " : " + userData[1];
-            }
-
-            for (int i = 0; i < Players.Length - 1; i++)
-            {
-                if (!string.IsNullOrEmpty(Players[i]))
+                usernames.Add(people[i].Split('*')[0].Replace("\"", string.Empty));
+                scores.Add(people[i].Split('*')[1]);
+             
+                //Get Position
+                if (usernames[i] == PlayerPrefs.GetString("Username"))
                 {
-                    GameObject newText = Instantiate(newTextBox);
-                    newText.GetComponent<RectTransform>().sizeDelta = new Vector2(newText.GetComponent<RectTransform>().rect.width * 2, newText.GetComponent<RectTransform>().rect.height);
-                    newText.transform.SetParent(myPanel);
-                    newText.GetComponent<TextController>().Setup((i + 1), Players[i].Split(':')[0], int.Parse(Players[i].Split(':')[1]));
-
-                    try
-                    {
-                        if (Players[i].Contains(PlayerPrefs.GetString("Username")))
-                        {
-                            newText.GetComponent<TextController>().Colorize();
-                        }
-                    }
-                    catch (Exception e) { }
+                    FindObjectOfType<ScorePanel>().setLabelText(GameObject.Find("Username"), PlayerPrefs.GetString("Username") + " : " + TextController.GetPositionText(i + 1).ToString());
                 }
             }
+
+            //Get Global High Score
+            PlayerPrefs.SetString("Global Score", scores[0]);
+            GameObject.Find("Global_Score").GetComponent<Text>().text = scores[0];
+            GameObject.Find("TopScorer").GetComponent<Text>().text = usernames[0];
+
+            FindObjectOfType<ScorePanel>().PrepareLeaderBoard(usernames, scores, 5);
         }
         else
         {
-            Alert("Error in Connection", "LeaderBoardStatus");
+            Alert("Please Connect to Internet. Error in Connection", "Status");
         }
-    }
 
-
-    public void GetGlobalHighScore()
-    {
-        WWW www = new WWW("https://tagetti.herokuapp.com/leaderboard/1", null, header);
-        StartCoroutine(GetGlobalHighScoreConnection(www));
-    }
-    IEnumerator GetGlobalHighScoreConnection(WWW www)
-    {
-        yield return www;
-
-        if (www.error == null)
-        {
-            string playerScore = www.text.Split('*')[1].Replace("|", "").Replace("\"", "");
-            GameObject.Find("Global_Score").GetComponent<Text>().text = playerScore;
-            PlayerPrefs.SetInt("Global Score", int.Parse(playerScore));
-        }
-        else
-        {
-            GameObject.Find("Global_Score").GetComponent<Text>().text = "X";
-            Alert("Error in Connection. Couldn't update Global Score", "Status");
-        }
-    }
-
-
-    public void CloseLeaderboard()
-    {
-        leaderboard.SetActive(false);
-        leaderClose.SetActive(false);
-        
-        foreach(Transform child in leaderlist.transform)
-        {
-            Destroy(child.gameObject);
-        }
     }
 }

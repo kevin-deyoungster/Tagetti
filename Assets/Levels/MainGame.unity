@@ -2637,7 +2637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080f4f3b00c389344a5a7dd93177b0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 5
+  timeLeft: 30
   timeLabel: {fileID: 1114237357}
   stopCounting: 0
 --- !u!82 &2113825254
@@ -2732,7 +2732,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leaderboard: {fileID: 0}
-  leaderlist: {fileID: 0}
   leaderClose: {fileID: 0}
-  myPanel: {fileID: 0}
   globalScore: {fileID: 0}

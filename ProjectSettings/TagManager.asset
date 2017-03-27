@@ -17,6 +17,8 @@ TagManager:
   - PauseButton
   - Settings
   - SoundButton
+  - Undefined
+  - Score
   layers:
   - Default
   - TransparentFX
