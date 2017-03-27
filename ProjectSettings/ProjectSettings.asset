@@ -197,8 +197,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/kaminoshinyu/Google Drive/Programming/Game Development/Project
-    26 by 6/Tagetti/Tagetti 1.0 Release 1/Build/user.keystore
+  AndroidKeystoreName: C:/Users/kaminoshinyu/Google Drive/Programming/Game Development/Game
+    Projects/Tagetti/Tagetti 1.0 Dev/user.keystore
   AndroidKeyaliasName: ggjashesi
   AndroidTVCompatibility: 1
   AndroidIsGame: 1

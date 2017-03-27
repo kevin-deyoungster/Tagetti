@@ -29,6 +29,6 @@ public class TimeManager : MonoBehaviour {
 
     public void ResetTimer()
     {
-        timeLeft = 30;
+        timeLeft = 5;
     }
 }

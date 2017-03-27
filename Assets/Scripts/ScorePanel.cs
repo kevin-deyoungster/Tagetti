@@ -12,7 +12,7 @@ public class ScorePanel : MonoBehaviour {
     public GameObject lblUsername;
     public GameObject lblGlobalScore;
 
-    public ServerConnector serveConnect;
+    public NetworkManager netManager;
 
 	void Start () {
 
@@ -29,9 +29,8 @@ public class ScorePanel : MonoBehaviour {
             setLabelText(lblGlobalScore, PlayerPrefs.GetString("Global Score").ToString());
         }
 
-        FindObjectOfType<ServerConnector>().updateUser();
-        serveConnect.GetTopScore();
-        
+        //FindObjectOfType<NetworkManager>().UpdateUser();
+        netManager.GetGlobalHighScore();        
     }
 
     void setLabelText(GameObject label, string text)

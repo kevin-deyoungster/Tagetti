@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Asker : MonoBehaviour {
 
     public InputField username;
-    public ServerConnector serveConnect;
+    public NetworkManager serveConnect;
     public bool serverConnected = false;
 
     public void SetUserName()
