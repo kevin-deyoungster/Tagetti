@@ -16,8 +16,6 @@ TagManager:
   - Status
   - PauseButton
   - Settings
-  - SoundButton
-  - Undefined
   - Score
   layers:
   - Default
