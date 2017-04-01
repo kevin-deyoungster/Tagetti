@@ -97,6 +97,7 @@ public class NetworkManager : MonoBehaviour {
         }
         else
         {
+            GameObject.Find("GlobalScore").GetComponent<Text>().text = "X";
             Alert("Please Connect to Internet. Error in Connection", "Status");
         }
 

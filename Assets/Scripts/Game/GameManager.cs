@@ -120,6 +120,7 @@ public class GameManager : MonoBehaviour {
 
     public void LoadStatsPage()
     {
+        Time.timeScale = 1;
         SceneManager.GetInstance().LoadStatsPage();
     }
 
