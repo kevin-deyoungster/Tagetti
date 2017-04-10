@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour {
     {
         PlayerPrefs.SetFloat("Current Score", FindObjectOfType<ScoreManager>().currentScore);
         PlayerPrefs.SetFloat("High Score", FindObjectOfType<ScoreManager>().GetHighScore());
-
+      
         if (PlayerPrefs.HasKey("Deaths"))
         {
             PlayerPrefs.SetFloat("Deaths", PlayerPrefs.GetFloat("Deaths") + 1f);
