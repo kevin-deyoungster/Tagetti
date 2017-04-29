@@ -17,7 +17,6 @@ public class SoundController : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
-            //Destroy(gameObject);
             return;
         }
         else
