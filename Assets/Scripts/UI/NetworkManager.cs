@@ -5,6 +5,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//Network Manager handles the networking by accessing the node server url ( separate component ) with set parameters
+
+//Once GameOver, on Loading the stats page an http request is sent and all the relevant info is gotten from the response 
+
 public class NetworkManager : MonoBehaviour {
 
    public Dictionary<string, string> header = new Dictionary<string, string>();
@@ -13,7 +17,6 @@ public class NetworkManager : MonoBehaviour {
     {
         string userAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36";
         header.Add("User-Agent", userAgent);
-
     }
   
 

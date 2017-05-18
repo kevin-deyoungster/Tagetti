@@ -1,3 +1,0 @@
-Package Name: com.ggjAshesi.tagetti
-alias: ggjashesi
-keystore password: s@vedtagetti

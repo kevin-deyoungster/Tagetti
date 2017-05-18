@@ -7,10 +7,12 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
+    //Pause Menu
     private List<GameObject> pausePanel = new List<GameObject>();
     public bool gamePaused = false;
     public GameObject pauseButton;
 
+    //Balls
     public GameObject ballPrefab;
     public List<GameObject> balls = new List<GameObject>();
     private int numberOfBalls = 1;
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour {
 
     public void ReadInput()
     {
+        // Toggle the Pause Menu
         if (Input.GetKeyDown(KeyCode.P) && gamePaused == false)
         {
             PauseGame();
