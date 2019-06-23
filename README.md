@@ -1,3 +1,5 @@
+[Link to Game on the Google Playstore](https://play.google.com/store/apps/details?id=com.ggjAshesi.tagetti&hl=en)
+
 Built for [Global Game Jam 2017](https://github.com/kevin-deyoungster/Tagetti-Backend-API)
 
 ![Main Screen](https://lh3.googleusercontent.com/1LLUjA7HlnRNvtbNlF9Ftb-ZRvcHFENjAl4eEFROxCNhg_QrKe0xuY9MClkXGiz0twA=w720-h310-rw "Main Screen")
