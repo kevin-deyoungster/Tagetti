@@ -1,14 +1,14 @@
 {
-    "name": "linkapp",
-    "version": "1.0.0",
-    "description": "",
+    "name": "tagetti",
+    "version": "1.5.0",
+    "description": "Backend server for Tagetti",
     "main": "server.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "nodemon server.js",
-        "start": "node server.js"
+        "start": "node server.js",
+        "deploy-heroku": "cd .. && git subtree push --prefix Backend heroku master"
     },
-    "author": "",
+    "author": "Kevin de Youngster",
     "license": "ISC",
     "dependencies": {
         "body-parser": "^1.16.1",
