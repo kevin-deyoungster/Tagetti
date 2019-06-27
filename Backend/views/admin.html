@@ -1,0 +1,199 @@
+<html>
+
+<head>
+    <title> Tagetti Admin Panel </title>
+    <link rel="stylesheet" type="text/css" href="main.css" media="screen" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Code+Pro" rel="stylesheet">
+</head>
+
+<script language='javascript'>
+    function pullUsers() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                rawText = this.responseText;
+                players = rawText.split('|');
+
+                for (var i = 0; i < players.length; i++) {
+                    playerName = players[i].split('*')[0];
+                    playerScore = players[i].split('*')[1];
+                    players[i] = padding_right(playerName, '-', 9) + padding_left(playerScore, '-', 3);
+                }
+
+                players.splice(-1);
+
+                selecter = document.getElementById('leaders');
+                selecter.innerHTML = '';
+                selecter.size = players.length;
+
+                for (var i = 0; i < players.length; i++) {
+                    var opt = document.createElement('option');
+                    opt.value = players[i].split('-')[0];
+                    opt.innerHTML = players[i];
+                    selecter.appendChild(opt);
+                }
+
+                players.sort();
+                selecter = document.getElementById('players');
+                selecter.innerHTML = '';
+                selecter.size = players.length;
+
+                function padding_left(s, c, n) {
+                    if (!s || !c || s.length >= n) {
+                        return s;
+                    }
+
+                    var max = (n - s.length) / c.length;
+                    for (var i = 0; i < max; i++) {
+                        s = c + s;
+                    }
+                    return s;
+                }
+                // right padding s with c to a total of n chars
+                function padding_right(s, c, n) {
+                    if (!s || !c || s.length >= n) {
+                        return s;
+                    }
+
+                    var max = (n - s.length) / c.length;
+                    for (var i = 0; i < max; i++) {
+                        s += c;
+                    }
+                    return s;
+                }
+
+
+                for (var i = 0; i < players.length; i++) {
+                    var opt = document.createElement('option');
+                    opt.value = players[i].split('-')[0];
+                    opt.innerHTML = players[i];
+                    selecter.appendChild(opt);
+                }
+
+            }
+
+        }
+        xhr.open("GET", "/leaderboard", true);
+        xhr.send();
+    }
+
+    function updateUser() {
+        score = prompt("Type Score");
+        selecter = document.getElementById("players");
+        player = selecter.options[selecter.selectedIndex].value;
+
+        if (score != null) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    if (this.responseText == "true") {
+                        status("Successfully Updated Account");
+                    } else if (this.responseText == "false") {
+                        Status("Couldn't Update Account");
+                    }
+                }
+            }
+
+            xhr.open("GET", "/update/" + player + "/" + score, true);
+            xhr.send();
+        }
+
+    }
+
+    function createUser() {
+        name = prompt("Type User Name");
+        if (name != null) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    if (this.responseText == "true") {
+                        status("Successfully Created Account");
+                    } else if (this.responseText == "false") {
+                        Status("Username Already Exists");
+                    }
+                }
+            }
+
+            xhr.open("GET", "/create/" + name + "/0", true);
+            xhr.send();
+        }
+        alert("created list again");
+        pullUsers();
+        alert("list reloaded");
+    }
+
+    function removeUser() {
+        selecter = document.getElementById("players");
+        player = selecter.options[selecter.selectedIndex].value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText == "true") {
+                    status("Successfully Removed Account");
+                } else if (this.responseText == "false") {
+                    Status("Failed to remove user");
+                }
+            }
+        }
+
+        xhr.open("GET", "/remove/" + player, true);
+        xhr.send();
+        selecter.options[selecter.selectedIndex].outerHTML = "";
+        delete selecter.options[selecter.selectedIndex];
+
+        document.querySelector('div.leaders option[value=' + player).outerHTML = "";
+        delete document.querySelector('div.leaders option[value=' + player);
+    }
+
+
+    function status(info) {
+        st = document.getElementById("status");
+        st.innerHTML = info;
+    }
+    window.onload = pullUsers;
+</script>
+
+<body>
+
+
+    <div class="flex-container">
+
+        <div class="playerList">
+            <center>
+                <p>Players</p>
+                <select name="players" id="players" size="4">
+                
+                    </select>
+            </center>
+        </div>
+
+        <div class="buttons">
+            <center>
+                <h1>Tagetti Admin Panel</h1>
+            </center>
+            <center>
+                <center><button type="button" onclick="createUser();"> Add Player</button></center>
+                <center><button type="button" onclick="removeUser();"> Remove Player</button></center>
+                <center><button type="button" onclick="updateUser()"> Update Player Score</button></center>
+                <center>
+                    <p id="status"></p>
+                </center>
+        </div>
+
+        <div class="leaders">
+            <center>
+                <p>Leaderboard</p>
+                <select name="leaders" id="leaders" size="4">
+                
+                </select>
+            </center>
+        </div>
+    </div>
+
+
+    </div>
+</body>
+
+</html>

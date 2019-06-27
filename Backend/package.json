@@ -1,0 +1,30 @@
+{
+    "name": "linkapp",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon server.js",
+        "start": "node server.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.16.1",
+        "cors": "^2.8.5",
+        "dotenv": "^8.0.0",
+        "ejs": "^2.5.6",
+        "express": "^4.14.1",
+        "gmail-send": "^1.2.7",
+        "moment": "^2.18.1",
+        "mongodb": "^2.2.24",
+        "nodemon": "^1.11.0"
+    },
+    "engines": {
+        "node": "v11.9.0"
+    },
+    "devDependencies": {
+        "nodemon": "^1.11.0"
+    }
+}

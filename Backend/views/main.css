@@ -1,0 +1,35 @@
+html,
+body {
+    height: 100%;
+    background-color: #0d2f3a;
+    color: #ffffff;
+    font-family: "Open Sans", sans-serif;
+    margin: 0 auto;
+    font-size: 1.2em;
+}
+
+option {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.2em;
+}
+
+button {
+    cursor: hand;
+    font-family: "Open Sans", sans-serif;
+    border: 3px solid #ffffff;
+    border-radius: 5px;
+    padding: 5px;
+    background: #0d2f3a;
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+#status {
+    margin-top: 100px;
+}
+.flex-container {
+    display: flex;
+}
+.flex-container > div {
+    flex: 1;
+}
