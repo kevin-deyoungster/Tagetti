@@ -23,7 +23,6 @@ app.use(
 app.use(cors(corsOptions));
 
 app.use(express.static(__dirname + "/views"));
-app.set("view engine", "ejs");
 
 MongoClient.connect(process.env.MONGO_URI, (err, database) => {
 	if (err) return console.log(err);
